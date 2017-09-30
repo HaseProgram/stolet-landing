@@ -1,0 +1,230 @@
+@font-face {
+	font-family: "MuseoSansRegular";
+	src: url("../fonts/MuseoSansRegular/MuseoSansRegular.eot");
+	src: url("../fonts/MuseoSansRegular/MuseoSansRegular.eot?#iefix")format("embedded-opentype"),
+	url("../fonts/MuseoSansRegular/MuseoSansRegular.woff") format("woff"),
+	url("../fonts/MuseoSansRegular/MuseoSansRegular.ttf") format("truetype");
+	font-style: normal;
+	font-weight: normal;
+}
+
+@font-face {
+	font-family: "MuseoSansBold";
+	src: url("../fonts/MuseoSansBold/MuseoSansBold.eot");
+	src: url("../fonts/MuseoSansBold/MuseoSansBold.eot?#iefix")format("embedded-opentype"),
+	url("../fonts/MuseoSansBold/MuseoSansBold.woff") format("woff"),
+	url("../fonts/MuseoSansBold/MuseoSansBold.ttf") format("truetype");
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* GENERAL */
+
+a, button {
+    outline: 0px;
+}
+
+body {
+	font-family: 'Open Sans', sans-serif;
+	min-width: 750px;
+    font-size: 14px;
+    min-height: 2000px;
+}
+
+.btn-s {
+    border-radius: 10px;
+    background: #4c949e;
+    border: 0px;
+    color: #eee;
+    padding: 10px 45px 10px 45px;
+}
+
+/* BANNER */
+
+.banner {
+    background: url('../images/banner.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center top;
+    height:650px;
+    width: 100%;
+    min-width: 750px;
+    text-align: center;
+}
+
+.banner .wrapper {
+    position: relative;
+    margin: auto;
+}
+
+.banner .container {
+    position: absolute;
+    left: 50%;
+    margin-left: -585px;
+    top: 0px;
+    min-width: 750px;
+}
+
+.banner .text {
+    margin: 200px 0 90px 0;
+}
+
+.banner p {
+    font-family: 'MuseoSansRegular', sans-serif;
+    color: #eee;
+    line-height: 1.5;
+}
+
+.banner p.title {
+    font-size: 32px;
+    letter-spacing: 2px;
+}
+
+.banner p.description {
+    font-size: 18px;
+}
+
+@media screen and (max-width: 1200px) {
+
+    .banner .container {
+        margin-left: -485px;
+    }
+
+    .banner p.title {
+        font-size: 28px;
+    }
+
+    .banner p.description {
+        font-size: 16px;
+    }
+
+}
+
+@media screen and (max-width: 991px) {
+
+    .banner .container {
+        margin-left: -385px;
+    }
+
+}
+
+@media screen and (max-width: 768px) {
+
+    .banner .container {
+        width: 100%;
+    }
+
+}
+
+/* MENU */
+
+.navbar {
+    height: 50px;
+    width: 100%;
+    background: rgba(50, 55, 58, 0.73);
+    position: relative;
+    top: 600px;
+    padding: 0 100px;
+}
+
+.navbar-fixed {
+    position: fixed !important;
+    top: 0px !important;
+}
+
+.navbar-header {
+    float: left;
+}
+
+.navbar-collapse.collapse {
+  display: block!important;
+}
+
+.navbar-nav>li, .navbar-nav {
+  float: left !important;
+}
+
+.navbar-nav.navbar-right:last-child {
+  margin-right: -15px !important;
+}
+
+.navbar-right {
+  float: right!important;
+}
+
+.navbar-brand {
+    padding: 5px 0;
+}
+
+.navbar-nav a {
+    color: #fff;
+}
+
+.navbar-nav a:hover {
+    color: #3f4446;
+}
+
+.navbar-nav li.phone a {
+    background: none;
+}
+
+.navbar-nav li.phone a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.navbar-nav li.phone i {
+    position: relative;
+    font-size: 18px;
+    top: 1px;
+    -webkit-transform: rotate(25deg);
+    -moz-transform: rotate(25deg);
+    -ms-transform: rotate(25deg);
+    -o-transform: rotate(25deg);
+    transform: rotate(25deg);
+    padding: 0 3px;
+}
+
+@media screen and (max-width: 1200px) {
+
+    .navbar {
+        padding: 0 50px;
+    }
+
+}
+
+@media screen and (max-width: 991px) {
+
+    .navbar {
+        padding: 0px;
+    }
+
+    .navbar-brand {
+        padding: 10px 20px;
+    }
+
+    .navbar-brand img {
+        height: 30px;
+    }
+
+}
+
+@media screen and (max-width: 778px) {
+
+    #phone-number {
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 767px) {
+
+    .navbar-right  {
+        height: 50px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        padding: 5px;
+    }
+
+}
+

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Производственно-строительное объединение СТОЛЕТ</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="css/font-awesome.min.css" />
+        <link rel="stylesheet" href="css/style.css" />
+    </head>
+    <body>
+        <!-- BANNER -->
+        <header id="home" class="banner" data-paroller-factor="0.6">
+            <div class="wrapper">
+                <div class="container">
+                    <div class="text">
+                        <p class="title">
+                            ПРОИЗВОДСТВЕННО-СТРОИТЕЛЬНОЕ<br>
+                            ОБЪЕДИНЕНИЕ
+                        </p>
+                        <p class="description">
+                            Строительство деревянных домов от СТОЛЕТ -
+                            комплексный подход от проекта до сдачи под&nbsp;ключ.
+                        </p>
+                    </div>
+                    <a class="btn btn-default btn-s" href="#contact">СВЯЗАТЬСЯ С НАМИ</a>
+                </div>
+            </div>
+            <nav class="navbar">
+                <div class="container-fluid">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" href="#">
+                            <img src="images/logo-white.png" alt="СТОЛЕТ ХОЛДИНГ" />
+                        </a>
+                    </div>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="#home">В начало</a></li>
+                        <li><a href="#about">О нас</a></li>
+                        <li><a href="#services">Услуги</a></li>
+                        <li><a href="#contacts">Контакты</a></li>
+                        <li class="phone">
+                            <a href="#">
+                                <i class="fa fa-mobile" aria-hidden="true"></i>
+                                <span id="phone-number">+7 499 611 40 58</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <!-- BANNER -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="js/paroller.js"></script>
+        <script>
+            $(window).paroller();
+            $(window).scroll(function() {
+                var scrolled = $(window).scrollTop();
+                if(scrolled >= 600) {
+                    $('nav').addClass('navbar-fixed');
+                } else {
+                    $('nav').removeClass('navbar-fixed');
+                }
+            });
+        </script>
+    </body>
+</html>
