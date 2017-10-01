@@ -6,7 +6,28 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
         <link rel="stylesheet" href="css/font-awesome.min.css" />
+        <link rel="stylesheet" href="css/slick.css" />
+        <link rel="stylesheet" href="css/slick-theme.css" />
         <link rel="stylesheet" href="css/style.css" />
+        <script>
+            function phonenumber(inputtxt) {
+                var phoneno = /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/;
+                return inputtxt.match(phoneno);
+            }
+
+            function validate() {
+                var tel = document.getElementById("tel").value;
+                if(phonenumber(tel)) {
+                    document.getElementById('sub-form').removeAttribute('disabled');
+                    document.getElementById('wrong-number').style.display = 'none';
+                    return true;
+                }
+                else {
+                    document.getElementById('sub-form').setAttribute('disabled','true');
+                    document.getElementById('wrong-number').style.display = 'block';
+                }
+            }
+        </script>
     </head>
     <body>
         <!-- BANNER -->
@@ -23,7 +44,7 @@
                             комплексный подход от проекта до сдачи под&nbsp;ключ.
                         </p>
                     </div>
-                    <a class="btn btn-default btn-s" href="#contact">СВЯЗАТЬСЯ С НАМИ</a>
+                    <a href="#contacts" class="btn btn-default btn-s">СВЯЗАТЬСЯ С НАМИ</a>
                 </div>
             </div>
             <nav class="navbar">
@@ -35,8 +56,8 @@
                     </div>
                     <ul class="nav navbar-nav navbar-right">
                         <li><a href="#home">В начало</a></li>
-                        <li><a href="#about">О нас</a></li>
                         <li><a href="#services">Услуги</a></li>
+                        <li><a href="#about">О нас</a></li>
                         <li><a href="#contacts">Контакты</a></li>
                         <li class="phone">
                             <a href="#">
@@ -49,18 +70,286 @@
             </nav>
         </header>
         <!-- BANNER -->
+        <!-- SERVICES -->
+        <div id="services" class="services">
+            <div class="wrapper">
+                <div class="container">
+                    <div class="block-header">
+                        Наши услуги
+                    </div>
+                    <div class="sliders">
+                        <div class="slide">
+                            <div class="slide-header">
+                                <img src="images/icon-pencil.png" alt="Проектиование" />
+                                <span>ПРОЕКТИРОВАНИЕ</span>
+                            </div>
+                            <div class="description">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                Phasellus quis nibh posuere, fringilla ex a, convallis nisi. 
+                                Mauris in neque augue. Vivamus viverra dolor tempus nisi 
+                                rutrum vulputate. Sed finibus erat id erat imperdiet, 
+                                ac rutrum tellus sodales. Aliquam eu ipsum auctor magna 
+                                blandit ultrices vel eu ante. Vivamus non eros tristique, 
+                                auctor libero sit amet, tristique felis. Sed malesuada ligula 
+                                ac tincidunt aliquam. Duis vel erat nulla.
+                            </div>
+                        </div>
+                        <div class="slide">
+                            <div class="slide-header">
+                                <img src="images/icon-wood.png" alt="Строительство домов из дерева" />
+                                <span>СТРОИТЕЛЬСТВО ДОМОВ ИЗ ДЕРЕВА</span>
+                            </div>
+                            <div class="description">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                Phasellus quis nibh posuere, fringilla ex a, convallis nisi. 
+                                Mauris in neque augue. Vivamus viverra dolor tempus nisi 
+                                rutrum vulputate. Sed finibus erat id erat imperdiet, 
+                                ac rutrum tellus sodales. Aliquam eu ipsum auctor magna 
+                                blandit ultrices vel eu ante. Vivamus non eros tristique, 
+                                auctor libero sit amet, tristique felis. Sed malesuada ligula 
+                                ac tincidunt aliquam. Duis vel erat nulla.
+                            </div>
+                            <a class="photos" href="#photos-wood">
+                                <i class="fa fa-camera" aria-hidden="true"></i>
+                                фото работ
+                            </a>
+                        </div>
+                        <div class="slide">
+                            <div class="slide-header">
+                                <img src="images/icon-brick.png" alt="Строительство домов из кирпича" />
+                                <span>СТРОИТЕЛЬСТВО ДОМОВ ИЗ КИРПИЧА</span>
+                            </div>
+                            <div class="description">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                Phasellus quis nibh posuere, fringilla ex a, convallis nisi. 
+                                Mauris in neque augue. Vivamus viverra dolor tempus nisi 
+                                rutrum vulputate. Sed finibus erat id erat imperdiet, 
+                                ac rutrum tellus sodales. Aliquam eu ipsum auctor magna 
+                                blandit ultrices vel eu ante. Vivamus non eros tristique, 
+                                auctor libero sit amet, tristique felis. Sed malesuada ligula 
+                                ac tincidunt aliquam. Duis vel erat nulla.
+                            </div>
+                            <a class="photos" href="#photos-wood">
+                                <i class="fa fa-camera" aria-hidden="true"></i>
+                                фото работ
+                            </a>
+                        </div>
+                        <div class="slide">
+                            <div class="slide-header">
+                                <img src="images/icon-outside.png" alt="Строительство домов из кирпича" />
+                                <span>СТРОИТЕЛЬСТВО НАДВОРНЫХ ПОСТРОЕК</span>
+                            </div>
+                            <div class="description">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                Phasellus quis nibh posuere, fringilla ex a, convallis nisi. 
+                                Mauris in neque augue. Vivamus viverra dolor tempus nisi 
+                                rutrum vulputate. Sed finibus erat id erat imperdiet, 
+                                ac rutrum tellus sodales. Aliquam eu ipsum auctor magna 
+                                blandit ultrices vel eu ante. Vivamus non eros tristique, 
+                                auctor libero sit amet, tristique felis. Sed malesuada ligula 
+                                ac tincidunt aliquam. Duis vel erat nulla.
+                            </div>
+                            <a class="photos" href="#photos-wood">
+                                <i class="fa fa-camera" aria-hidden="true"></i>
+                                фото работ
+                            </a>
+                        </div>
+                        <div class="slide">
+                            <div class="slide-header">
+                                <img src="images/icon-inside.png" alt="Строительство домов из кирпича" />
+                                <span>ОТДЕЛКА ВНУТРЕННИХ ПОМЕЩЕНИЙ</span>
+                            </div>
+                            <div class="description">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                                Phasellus quis nibh posuere, fringilla ex a, convallis nisi. 
+                                Mauris in neque augue. Vivamus viverra dolor tempus nisi 
+                                rutrum vulputate. Sed finibus erat id erat imperdiet, 
+                                ac rutrum tellus sodales. Aliquam eu ipsum auctor magna 
+                                blandit ultrices vel eu ante. Vivamus non eros tristique, 
+                                auctor libero sit amet, tristique felis. Sed malesuada ligula 
+                                ac tincidunt aliquam. Duis vel erat nulla.
+                            </div>
+                            <a class="photos" href="#photos-wood">
+                                <i class="fa fa-camera" aria-hidden="true"></i>
+                                фото работ
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- SERVICES -->
+        <!-- ABOUT -->
+        <div id="about" class="about">
+            <div class="wrapper">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xs-6 col-md-6 col-lg-6">
+                            <div class="block-header">
+                                О нашей компании
+                            </div>
+                            <div class="text">
+                                <p>
+                                    Компания ООО “Столет-Холдинг” работает на рынке малоэтажного 
+                                    загородного строительства с 2000 года.
+                                </p>
+                                <p>
+                                    Мы специализируемся на строитлеьстве респектабельных коттеджей и 
+                                    комфортных загородных домов по индивидуальным проектам, 
+                                    а также на ремонте и реконструкции коттеджей, домов, 
+                                    квартир в Москве и Московской области.   
+                                </p>
+                                <p>
+                                    Качественный вдумчивый подход к работам по строительству Вашего дома, 
+                                    выявление именно Ваших потребностей - основа деятельности нашей компании.
+                                </p>
+                                <p>
+                                    Будьте уверены в наших мастерах, мы с Вами найдем то решение, 
+                                    которое подойдет идеально Вам, а мы воплотим его в жизнь!   
+                                </p>
+                                <a class="btn btn-default btn-s" href="#contacts">СВЯЗАТЬСЯ</a>
+                            </div>
+                        </div>
+                        <div class="col-xs-6 col-md-6 col-lg-6">
+                            <div class="license">
+                                <img src="images/license.jpg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ABOUT -->
+        <!-- CONTACTS -->
+        <div id="contacts" class="contacts" data-paroller-factor="0.3">
+            <div class="wrapper">
+                <div class="container">
+                    <div class="block-header">
+                        Свяжитесь с нами
+                    </div>
+                    <div class="appeal">
+                        Оставьте Ваше сообщение и наш менеджер свяжется с Вами в <br> ближайшее время!
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="overlay"></div>
+        <div class="contact-us">
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xs-12 col-md-6 col-lg-6 contact-form">
+                            <form action="mail.php" method="POST">
+                                <div class="form-group">
+                                    <input type="text" class="form-control" id="name" placeholder="Как нам к Вам обращаться? (ФИО)" required>
+                                </div>
+                                <div class="form-group">
+                                    <input type="email" class="form-control" id="email" placeholder="Ваш email адрес">
+                                </div>
+                                <div class="form-group">
+                                    <input onfocusout="validate()" type="text" class="form-control" id="tel" placeholder="Ваш контактный телефон (без кода)" required>
+                                    <span id="wrong-number">Некорректный номер. Введите номер вида 499 611 40 58 </span>
+                                </div>
+                                <div class="form-group">
+                                    <textarea class="form-control" rows="7" id="comment" placeholder="Ваш комментарий"></textarea>
+                                </div>
+                                <div class="checkbox">
+                                    <input id="checkb" type="checkbox" value="none" name="check" required checked>
+                                    <label class="control-label">	
+                                        <a href="#popup">Нажимая кнопку «Отправить», я даю свое согласие на обработку моих персональных данных, в соответствии с Федеральным законом от 27.07.2006 года №152-ФЗ «О персональных данных», на условиях и для целей, определенных в Согласии на обработку персональных данных</a>
+                                    </label>
+                                </div>
+                                <button type="submit" id="sub-form" class="btn btn-default btn-s">Оставить заявку</button>
+                            </form>
+                        </div>
+                        <div class="col-xs-12 col-md-6 col-lg-6 data">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1590.5873297028993!2d37.62931666223193!3d55.68150850597438!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x414ab35688ae14e7%3A0xc659dceb8a95c915!2z0J3QsNCz0LDRgtC40L3RgdC60LDRjyDRg9C7LiwgM9CQLCDQnNC-0YHQutCy0LAsIDExNzEwNQ!5e0!3m2!1sru!2sru!4v1506878509739" width="100%" height="390" frameborder="0" style="border:0" allowfullscreen></iframe>
+                            <div class="specified">
+                                <span>КОНТАКТЫ</span>
+                                <ul>
+                                    <li>
+                                        <i class="fa fa-home" aria-hidden="true"></i>
+                                        г. Москва, ул. Нагатинская, 3Ф, 117105
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-phone" aria-hidden="true"></i>
+                                        8 (499) 611 40 58
+                                    </li>
+                                    <li>
+                                        <i class="fake"></i>
+                                        8 (499) 611 15 48
+                                    </li>
+                                    <li>
+                                        <i class="fa fa-envelope" aria-hidden="true"></i>
+                                        <a href="mailto:stolet@stolet.ru">stolet@stolet.ru</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="wrapper">
+                <div class="container-fluid">
+                    <span class="copyright">
+                        © 2003-2017 Stolet все права защищены
+                    </span>
+                    <ul class="social">
+                        <li><i class="fa fa-vk" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-instagram" aria-hidden="true"></i></li>
+                        <li><i class="fa fa-twitter" aria-hidden="true"></i></li>
+                    </ul>
+                </div>
+            </div>
+        </footer>
+        <!-- CONTACTS -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="js/paroller.js"></script>
+        <script src="js/slick.js"></script>
         <script>
             $(window).paroller();
             $(window).scroll(function() {
                 var scrolled = $(window).scrollTop();
                 if(scrolled >= 600) {
                     $('nav').addClass('navbar-fixed');
+                    $('nav').css('left', 0 - $(this).scrollLeft());
                 } else {
                     $('nav').removeClass('navbar-fixed');
                 }
+            });
+            $(document).ready(function() {
+                $("a").click(function() {
+                    var elementClick = $(this).attr("href")
+                    var destination = $(elementClick).offset().top;
+                    jQuery("html:not(:animated),body:not(:animated)").animate({
+                        scrollTop: destination
+                    }, 800);
+                    return false;
+                });
+                $("#accept").click(function() {
+                    $("#checkb").prop('checked', true);
+                });
+                $("#decl").click(function() {
+                    $("#checkb").prop('checked', false);
+                });
+            });
+            $('.sliders').slick({
+                infinite: true,
+                dots: true,
+                slidesToShow: 3,
+                slidesToScroll: 3,
+                responsive: [
+                    {
+                        breakpoint: 991,
+                        settings: {
+                            slidesToShow: 2,
+                            slidesToScroll: 2
+                        }
+                    }
+                ]
             });
         </script>
     </body>
