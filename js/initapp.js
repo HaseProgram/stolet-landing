@@ -12,6 +12,10 @@ $(window).scroll(function() {
     }
 });
 
+$(window).resize(function() {
+    resizeImg();
+})
+
 $(document).ready(function() {
     resizeImg();
     $("a").click(function() {
@@ -94,6 +98,10 @@ var thumb_land = false;
 var thumb_outside = false;
 var thumb_inside = false;
 
+$('.photos').click(function() {
+    $('.' + $(this).attr('change')).click();
+})
+
 $('.galery-menu > .btn').click(function() {
     if($(this).hasClass('btn-s')) {
         return;
@@ -167,12 +175,29 @@ function loadImgs($count, $name, $alt) {
     $figureclose = "</figure>";
     $linkclose = "</a>";
     $content = "";
-    for(var i = 1; i < $count; i++) {
-        $link = "<a href=\"./images/portfolio/" + $name + "/" + i + ".jpg\" itemprop=\"contentUrl\" data-size=\"1200x800\">";
-        $img = "<img src=\"./images/portfolio/" + $name + "_preview/" + i + ".jpg\" itemprop=\"thumbnail\" alt=\"" + $alt + "\" />";
+    for($i = 1; $i < $count; $i++) {
+        $src = "./images/portfolio/" + $name + "/" + $i + ".jpg";
+        $link = "<a class=\"" + $name + $i + "\" href=\"" + $src + "\" itemprop=\"contentUrl\">";
+        $img = "<img src=\"./images/portfolio/" + $name + "_preview/" + $i + ".jpg\" itemprop=\"thumbnail\" alt=\"" + $alt + "\" />";
         $content = $figure + $link + $img + $linkclose + $figureclose;
         $('.thumbs-all').append($content);
         $('.thumbs-' + $name).append($content);
+
+        $temp = document.createElement('img');   
+        $temp.src = $src;
+        $temp.setAttribute('c', $name + $i);
+        $h = 0; $w = 0;
+        $temp.onload = function () {
+            if (this.naturalWidth) {
+                $w = this.naturalWidth * 2.5;
+                $h = this.naturalHeight * 2.5;
+                $class = this.getAttribute('c');
+                //console.log($class, $('.' + $class).length);
+                $('.' + $class).attr('data-size', $w + 'x' + $h);
+            } else {
+                $('.' + $class).attr('data-size', '600x800');
+            }
+        }
     }
 }
 
@@ -183,8 +208,23 @@ loadImgs(31, 'land', 'Ландшафт');
 loadImgs(128, 'outside', 'Надворные постройки');
 loadImgs(31, 'inside', 'Отделка');
 
-// execute above function
 executeThumbs('.thumbs-all');
 
-
-$('.thumbs-all img')[10].click();
+$first = true;
+//$('.big-image img').on('load', function() {
+    $('.big-image a').click(function(event) {
+        event.preventDefault();
+        if($first) {
+            console.log('click')
+            $('.thumbs-all img')[10].click();
+            var poll = setInterval(function () {
+                $('.big-image img').click();
+                clearInterval(poll);
+            }, 10);
+            $first = false;
+        }
+        return false;
+    })
+// }).each(function() {
+//     if(this.complete) $(this).load();
+// });

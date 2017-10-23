@@ -6,13 +6,17 @@ function resizeImg() {
     var maxHeight = 650;    // Max height for the image
     var ratio = 0;  // Used for aspect ratio
 
-    console.log("LOAD");
+    $('.big-image img').css("height", "inherit");
+    $('.big-image img').css("width", "100%");
+    $('.big-image').css("height", "auto");
+
     var w = $('.big-image img').width();    // Current image width
     var h = $('.big-image img').height();  // Current image height
     console.log(w, h);
     if(h > maxHeight) {       
         ratio = maxHeight / h; // get ratio for scaling image
         var maxWidth = w * ratio;
+        var scale = w / h;
         
         $('.big-image img').css("height", maxHeight + "px");   // Set new height
         maxHeight = maxHeight + 150;
@@ -57,7 +61,7 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
     // parse slide data (url, title, size ...) from DOM elements 
     // (children of gallerySelector)
     var parseThumbnailElements = function(el) {
-        var thumbElements = el.childNodes,
+        var thumbElements = el.children,
             numNodes = thumbElements.length,
             items = [],
             figureEl,
