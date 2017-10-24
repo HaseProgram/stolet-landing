@@ -91,16 +91,30 @@ function executeThumbs(selector) {
     console.log($('.thumbs-active figure')[0]);
 }
 
-var thumb_bani = false;
-var thumb_houses = false;
-var thumb_inter = false;
-var thumb_land = false;
-var thumb_outside = false;
-var thumb_inside = false;
-
 $('.photos').click(function() {
     $('.' + $(this).attr('change')).click();
 })
+
+function changeThumb(sel, name) {
+    if($(sel).hasClass('galery-' + name)) {
+        $('.big-image').css('display', 'block');
+        $('.re').css('display', 'none');
+        if(!$('.thumbs-' + name).hasClass('slick-initialized')) {
+            executeThumbs('.thumbs-' + name); 
+        }
+        $('.thumbs-' + name).addClass('thumbs-active');
+        $('.thumbs-active figure')[0].click();
+        return true;
+    }
+}
+
+function changeRe(sel) {
+    if($(sel).hasClass('galery-re')) {
+        $('.big-image').css('display', 'none');
+        $('.re').css('display', 'block');
+        changeThumb(this, 're');
+    }
+}
 
 $('.galery-menu > .btn').click(function() {
     if($(this).hasClass('btn-s')) {
@@ -111,74 +125,32 @@ $('.galery-menu > .btn').click(function() {
     $('.thumbs-active').removeClass('thumbs-active');
 
     if($(this).hasClass('galery-all')) {
+        $('.big-image').css('display', 'block');
+        $('.re').css('display', 'none');
         $('.thumbs-all').addClass('thumbs-active');
         $('.thumbs-active figure')[10].click();
     }
 
-    if($(this).hasClass('galery-bani')) {
-        if(thumb_bani == false) {
-            executeThumbs('.thumbs-bani');
-            thumb_bani = true;
-        }
-        $('.thumbs-bani').addClass('thumbs-active');
-        $('.thumbs-active figure')[0].click();
-    }
-
-    if($(this).hasClass('galery-houses')) {
-        if(thumb_houses == false) {
-            executeThumbs('.thumbs-houses');
-            thumb_houses = true;
-        }
-        $('.thumbs-houses').addClass('thumbs-active');
-        $('.thumbs-active figure')[0].click();
-    }
-
-    if($(this).hasClass('galery-inter')) {
-        if(thumb_inter == false) {
-            executeThumbs('.thumbs-inter');
-            thumb_inter = true;
-        }
-        $('.thumbs-inter').addClass('thumbs-active');
-        $('.thumbs-active figure')[0].click();
-    }
-
-    if($(this).hasClass('galery-land')) {
-        if(thumb_land == false) {
-            executeThumbs('.thumbs-land');
-            thumb_land = true;
-        }
-        $('.thumbs-land').addClass('thumbs-active');
-        $('.thumbs-active figure')[0].click();
-    }
-
-    if($(this).hasClass('galery-outside')) {
-        if(thumb_outside == false) {
-            executeThumbs('.thumbs-outside');
-            thumb_outside = true;
-        }
-        $('.thumbs-outside').addClass('thumbs-active');
-        $('.thumbs-active figure')[0].click();
-    }
-
-    if($(this).hasClass('galery-inside')) {
-        if(thumb_inside == false) {
-            executeThumbs('.thumbs-inside');
-            thumb_inside = true;
-        }
-        $('.thumbs-inside').addClass('thumbs-active');
-        $('.thumbs-active figure')[0].click();
-    }
+    changeThumb(this, 'wood');
+    changeThumb(this, 'stone');
+    changeThumb(this, 'bani');
+    changeThumb(this, 'inter');
+    //changeThumb(this, 'land');
+    changeThumb(this, 'outside');
+    changeThumb(this, 'inside');
+    changeRe(this);
+    
 });
 
-function loadImgs($count, $name, $alt) {
+function loadImgs($count, $path, $name, $alt) {
     $figure = "<figure itemprop=\"associatedMedia\" itemscope itemtype=\"http://schema.org/ImageObject\">";
     $figureclose = "</figure>";
     $linkclose = "</a>";
     $content = "";
     for($i = 1; $i < $count; $i++) {
-        $src = "./images/portfolio/" + $name + "/" + $i + ".jpg";
+        $src = "./images/portfolio/" + $path + "/" + $i + ".jpg";
         $link = "<a class=\"" + $name + $i + "\" href=\"" + $src + "\" itemprop=\"contentUrl\">";
-        $img = "<img src=\"./images/portfolio/" + $name + "_preview/" + $i + ".jpg\" itemprop=\"thumbnail\" alt=\"" + $alt + "\" />";
+        $img = "<img src=\"./images/portfolio/" + $path + "_preview/" + $i + ".jpg\" itemprop=\"thumbnail\" alt=\"" + $alt + "\" />";
         $content = $figure + $link + $img + $linkclose + $figureclose;
         $('.thumbs-all').append($content);
         $('.thumbs-' + $name).append($content);
@@ -201,12 +173,14 @@ function loadImgs($count, $name, $alt) {
     }
 }
 
-loadImgs(41, 'bani', 'Баня');
-loadImgs(1, 'wood', 'Деревянный дом');
-loadImgs(35, 'inter', 'Интерьер');
-loadImgs(31, 'land', 'Ландшафт');
-loadImgs(128, 'outside', 'Надворные постройки');
-loadImgs(31, 'inside', 'Отделка');
+
+loadImgs(22, 'wood', 'wood', 'Деревянный дом');
+loadImgs(0, 'stone', 'stone', 'Каменный дом');
+loadImgs(41, 'bani', 'bani', 'Баня');
+loadImgs(35, 'inter', 'inter', 'Интерьер');
+loadImgs(31, 'land', 'outside', 'Ландшафт');
+loadImgs(128, 'outside', 'outside', 'Надворные постройки');
+loadImgs(31, 'inside', 'inter', 'Отделка');
 
 executeThumbs('.thumbs-all');
 
