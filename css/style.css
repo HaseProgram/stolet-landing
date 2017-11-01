@@ -262,6 +262,24 @@ body {
     width: 80%;
 }
 
+.services .description {
+    outline: none;
+    overflow: hidden;
+}
+
+.services .description p {
+    margin: 10px 0 0 0;
+    text-indent: 2em;
+    text-align: justify !important;
+}
+
+.services .description li {
+    text-align: justify !important;
+}
+.services center {
+    font-size: 18px;
+}
+
 @media screen and (max-width: 1700px) {
     
     .services .container {
@@ -302,7 +320,7 @@ body {
 }
 
 .sliders .description {
-    margin: 20px auto;
+    margin: 20px auto 0 auto;
     font-size: 14px;
 }
 
@@ -312,6 +330,21 @@ body {
     text-align: center;
     color: #5c848e;
     font-size: 16px;
+}
+
+.slick-slide .description {
+    max-height: 400px;
+}
+
+.photos {
+    margin: 10px auto;
+}
+
+.btn-more {
+    -webkit-box-shadow: -1px -5px 12px -6px rgba(0,0,0,0.75);
+    -moz-box-shadow: -1px -5px 12px -6px rgba(0,0,0,0.75);
+    box-shadow: -1px -5px 12px -6px rgba(0,0,0,0.75);
+    display: none;
 }
 
 /* ABOUT */

@@ -1,23 +1,97 @@
-window.onresize = function fixheight() {
-    $('.big-image > figure').css("min-height", "0");
-}
-$(window).paroller();
-$(window).scroll(function() {
-    var scrolled = $(window).scrollTop();
-    if(scrolled >= 600) {
-        $('nav').addClass('navbar-fixed');
-        $('nav').css('left', 0 - $(this).scrollLeft());
-    } else {
-        $('nav').removeClass('navbar-fixed');
-    }
-});
-
-$(window).resize(function() {
-    resizeImg();
-})
-
 $(document).ready(function() {
     resizeImg();
+
+    $btnMore = "<a href=\"#\" class=\"btn-more\">Показать описание полностью.</a>";
+    $('.sliders .description').each(function() {
+        $($btnMore).insertAfter(this);
+    })
+
+    loadImgs(22, 'wood', 'wood', 'Деревянный дом');
+    loadImgs(0, 'stone', 'stone', 'Каменный дом');
+    loadImgs(41, 'bani', 'bani', 'Баня');
+    loadImgs(35, 'inter', 'inter', 'Интерьер');
+    loadImgs(128, 'outside', 'outside', 'Надворные постройки');
+    loadImgs(31, 'inside', 'inter', 'Отделка');
+    
+    executeThumbs('.thumbs-all');
+    $('.sliders').slick({
+        infinite: true,
+        dots: true,
+        slidesToShow: 3,
+        slidesToScroll: 3,
+        responsive: [
+            {
+                breakpoint: 1400,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 2
+                }
+            }
+        ]
+    });
+
+    addBtnsMore();
+    $(window).paroller();
+
+    $first = true;
+    $('.big-image a').click(function(event) {
+        event.preventDefault();
+        if($first) {
+            console.log('click')
+            $('.thumbs-all img')[10].click();
+            var poll = setInterval(function () {
+                $('.big-image img').click();
+                clearInterval(poll);
+            }, 10);
+            $first = false;
+        }
+        return false;
+    })
+
+    $('.galery-menu > .btn').click(function() {
+        if($(this).hasClass('btn-s')) {
+            return;
+        };
+        $('.galery-menu').children().removeClass('btn-s');
+        $(this).addClass('btn-s');
+        $('.thumbs-active').removeClass('thumbs-active');
+    
+        if($(this).hasClass('galery-all')) {
+            $('.big-image').css('display', 'block');
+            $('.re').css('display', 'none');
+            $('.thumbs-all').addClass('thumbs-active');
+            $('.thumbs-active figure')[10].click();
+        }
+    
+        changeThumb(this, 'wood');
+        changeThumb(this, 'stone');
+        changeThumb(this, 'bani');
+        changeThumb(this, 'inter');
+        //changeThumb(this, 'land');
+        changeThumb(this, 'outside');
+        changeThumb(this, 'inside');
+        changeRe(this);
+        
+    });
+
+    window.onresize = function fixheight() {
+        $('.big-image > figure').css("min-height", "0");
+    }
+    
+    $(window).scroll(function() {
+        var scrolled = $(window).scrollTop();
+        if(scrolled >= 600) {
+            $('nav').addClass('navbar-fixed');
+            $('nav').css('left', 0 - $(this).scrollLeft());
+        } else {
+            $('nav').removeClass('navbar-fixed');
+        }
+    });
+    
+    $(window).resize(function() {
+        resizeImg();
+    })
+    
     $("a").click(function() {
         var elementClick = $(this).attr("href")
         var destination = $(elementClick).offset().top;
@@ -26,28 +100,30 @@ $(document).ready(function() {
         }, 800);
         return false;
     });
+    
     $("#accept").click(function() {
         $("#checkb").prop('checked', true);
     });
+    
     $("#decl").click(function() {
         $("#checkb").prop('checked', false);
     });
+
+    $('.photos').click(function() {
+        $('.' + $(this).attr('change')).click();
+    })
 });
-$('.sliders').slick({
-    infinite: true,
-    dots: true,
-    slidesToShow: 3,
-    slidesToScroll: 3,
-    responsive: [
-        {
-            breakpoint: 1400,
-            settings: {
-                slidesToShow: 2,
-                slidesToScroll: 2
-            }
+
+function addBtnsMore() {
+    $btnMore = "<a href=\"#\" class=\"btn-more\">Показать описание полностью.</a>";
+    $('.slick-initialized .description').each(function() {
+        $h = $(this).css("height");
+        if($h > 400) {
+            $(this).css("height", "300px");
+            $($btnMore).insertAfter(this);
         }
-    ]
-});
+    })
+}
 
 function executeThumbs(selector) {
     $(selector).slick({
@@ -88,12 +164,7 @@ function executeThumbs(selector) {
         ]
     });
     initPhotoSwipeFromDOM(selector);
-    console.log($('.thumbs-active figure')[0]);
 }
-
-$('.photos').click(function() {
-    $('.' + $(this).attr('change')).click();
-})
 
 function changeThumb(sel, name) {
     if($(sel).hasClass('galery-' + name)) {
@@ -116,32 +187,6 @@ function changeRe(sel) {
     }
 }
 
-$('.galery-menu > .btn').click(function() {
-    if($(this).hasClass('btn-s')) {
-        return;
-    };
-    $('.galery-menu').children().removeClass('btn-s');
-    $(this).addClass('btn-s');
-    $('.thumbs-active').removeClass('thumbs-active');
-
-    if($(this).hasClass('galery-all')) {
-        $('.big-image').css('display', 'block');
-        $('.re').css('display', 'none');
-        $('.thumbs-all').addClass('thumbs-active');
-        $('.thumbs-active figure')[10].click();
-    }
-
-    changeThumb(this, 'wood');
-    changeThumb(this, 'stone');
-    changeThumb(this, 'bani');
-    changeThumb(this, 'inter');
-    //changeThumb(this, 'land');
-    changeThumb(this, 'outside');
-    changeThumb(this, 'inside');
-    changeRe(this);
-    
-});
-
 function loadImgs($count, $path, $name, $alt) {
     $figure = "<figure itemprop=\"associatedMedia\" itemscope itemtype=\"http://schema.org/ImageObject\">";
     $figureclose = "</figure>";
@@ -149,56 +194,28 @@ function loadImgs($count, $path, $name, $alt) {
     $content = "";
     for($i = 1; $i < $count; $i++) {
         $src = "./images/portfolio/" + $path + "/" + $i + ".jpg";
-        $link = "<a class=\"" + $name + $i + "\" href=\"" + $src + "\" itemprop=\"contentUrl\">";
-        $img = "<img src=\"./images/portfolio/" + $path + "_preview/" + $i + ".jpg\" itemprop=\"thumbnail\" alt=\"" + $alt + "\" />";
-        $content = $figure + $link + $img + $linkclose + $figureclose;
+        $srcprev = "./images/portfolio/" + $path + "_preview/" + $i + ".jpg";
+        $class = $path + $i;
+        $link = "<a class=\"" + $class + "\" href=\"" + $src + "\" itemprop=\"contentUrl\">";
+        $content = $figure + $link + $linkclose + $figureclose;
         $('.thumbs-all').append($content);
         $('.thumbs-' + $name).append($content);
 
-        $temp = document.createElement('img');   
-        $temp.src = $src;
-        $temp.setAttribute('c', $name + $i);
-        $h = 0; $w = 0;
-        $temp.onload = function () {
+        $img = document.createElement('img');   
+        $img.src = $srcprev;
+        $img.setAttribute('alt', $alt);
+        $img.setAttribute('data-for', $class);
+        $img.onload = function() {
+            $h = 0; $w = 0;
+            $class = this.getAttribute('data-for');
             if (this.naturalWidth) {
-                $w = this.naturalWidth * 2.5;
-                $h = this.naturalHeight * 2.5;
-                $class = this.getAttribute('c');
-                //console.log($class, $('.' + $class).length);
+                $w = this.naturalWidth * 20;
+                $h = this.naturalHeight * 20;
                 $('.' + $class).attr('data-size', $w + 'x' + $h);
             } else {
                 $('.' + $class).attr('data-size', '600x800');
             }
+            $('.' + $class).append(this);
         }
     }
 }
-
-
-loadImgs(22, 'wood', 'wood', 'Деревянный дом');
-loadImgs(0, 'stone', 'stone', 'Каменный дом');
-loadImgs(41, 'bani', 'bani', 'Баня');
-loadImgs(35, 'inter', 'inter', 'Интерьер');
-loadImgs(31, 'land', 'outside', 'Ландшафт');
-loadImgs(128, 'outside', 'outside', 'Надворные постройки');
-loadImgs(31, 'inside', 'inter', 'Отделка');
-
-executeThumbs('.thumbs-all');
-
-$first = true;
-//$('.big-image img').on('load', function() {
-    $('.big-image a').click(function(event) {
-        event.preventDefault();
-        if($first) {
-            console.log('click')
-            $('.thumbs-all img')[10].click();
-            var poll = setInterval(function () {
-                $('.big-image img').click();
-                clearInterval(poll);
-            }, 10);
-            $first = false;
-        }
-        return false;
-    })
-// }).each(function() {
-//     if(this.complete) $(this).load();
-// });
