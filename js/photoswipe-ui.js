@@ -113,6 +113,8 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 
     // triggers when user clicks on thumbnail
     var onThumbnailsClick = function(e) {
+	var defhand = (this.dataset.default === 'true');
+	console.log(defhand);
         e = e || window.event;
         e.preventDefault ? e.preventDefault() : e.returnValue = false;
 
@@ -149,14 +151,14 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
 
         if(index >= 0) {
             // open PhotoSwipe if valid index found
-            openPhotoSwipe( index, clickedGallery );
+            openPhotoSwipe( index, clickedGallery, defhand );
         }
         
         //resizeImg();
         return false;
     };
 
-    var openPhotoSwipe = function(index, galleryElement, disableAnimation, fromURL) {
+    var openPhotoSwipe = function(index, galleryElement, defhand, disableAnimation, fromURL) {
         var pswpElement = document.querySelectorAll('.pswp')[0],
             gallery,
             options,
@@ -169,6 +171,10 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
         $img = "<img src=\"" + items[index].src + "\" itemprop=\"thumbnail\" alt=\"" + items[index].d + "\" />";
         $caption = "<figcaption itemprop=\"caption description\"><span class=\"description\">" + items[index].d + "</span> <span itemprop=\"copyrightHolder\">Photo: Stolet</span></figcaption>";
         $html = $link + $img + $caption + $linkclose;
+
+	if(!defhand || typeof defhand === 'undefined') {
+
+	
 
         $height = $('.big-image > figure > a > img').css("height");
         $('.big-image > figure').css("min-height", $height);
@@ -231,6 +237,25 @@ var initPhotoSwipeFromDOM = function(gallerySelector) {
     }).each(function() {
         if(this.complete) $(this).load();
     });
+} else {
+	options = {
+
+            // define gallery index (for URL)
+            galleryUID: galleryElement.getAttribute('data-pswp-uid'),
+
+            getThumbBoundsFn: function(index) {
+                // See Options -> getThumbBoundsFn section of documentation for more info
+                var thumbnail = items[index].el.getElementsByTagName('img')[0], // find thumbnail
+                    pageYScroll = window.pageYOffset || document.documentElement.scrollTop,
+                    rect = thumbnail.getBoundingClientRect(); 
+
+                return {x:rect.left, y:rect.top + pageYScroll, w:rect.width};
+            }
+
+        };
+	gallery = new PhotoSwipe( pswpElement, PhotoSwipeUI_Default, items, options);
+        gallery.init();
+}
 
         
     };

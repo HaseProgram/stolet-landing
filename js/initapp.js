@@ -5,13 +5,6 @@ $(document).ready(function() {
     $('.sliders .description').each(function() {
         $($btnMore).insertAfter(this);
     })
-
-    loadImgs(22, 'wood', 'wood', 'Деревянный дом');
-    loadImgs(0, 'stone', 'stone', 'Каменный дом');
-    loadImgs(41, 'bani', 'bani', 'Баня');
-    loadImgs(35, 'inter', 'inter', 'Интерьер');
-    loadImgs(128, 'outside', 'outside', 'Надворные постройки');
-    loadImgs(31, 'inside', 'inter', 'Отделка');
     
     executeThumbs('.thumbs-all');
     $('.sliders').slick({
@@ -33,18 +26,8 @@ $(document).ready(function() {
     addBtnsMore();
     $(window).paroller();
 
-    $first = true;
     $('.big-image a').click(function(event) {
         event.preventDefault();
-        if($first) {
-            console.log('click')
-            $('.thumbs-all img')[10].click();
-            var poll = setInterval(function () {
-                $('.big-image img').click();
-                clearInterval(poll);
-            }, 10);
-            $first = false;
-        }
         return false;
     })
 
@@ -65,11 +48,10 @@ $(document).ready(function() {
     
         changeThumb(this, 'wood');
         changeThumb(this, 'stone');
-        changeThumb(this, 'bani');
-        changeThumb(this, 'inter');
-        //changeThumb(this, 'land');
         changeThumb(this, 'outside');
-        changeThumb(this, 'inside');
+        changeThumb(this, 'inter');
+        changeThumb(this, 'sys');
+        changeThumb(this, 'work');
         changeRe(this);
         
     });
@@ -92,7 +74,7 @@ $(document).ready(function() {
         resizeImg();
     })
     
-    $("a").click(function() {
+    $("li a, a.btn, a.photos").click(function() {
         var elementClick = $(this).attr("href")
         var destination = $(elementClick).offset().top;
         jQuery("html:not(:animated),body:not(:animated)").animate({
@@ -127,8 +109,8 @@ function addBtnsMore() {
 
 function executeThumbs(selector) {
     $(selector).slick({
-        infinite: true,
-        dots: true,
+        infinite: false,
+        dots: false,
         slidesToShow: 10,
         slidesToScroll: 10,
         responsive: [
@@ -184,38 +166,5 @@ function changeRe(sel) {
         $('.big-image').css('display', 'none');
         $('.re').css('display', 'block');
         changeThumb(this, 're');
-    }
-}
-
-function loadImgs($count, $path, $name, $alt) {
-    $figure = "<figure itemprop=\"associatedMedia\" itemscope itemtype=\"http://schema.org/ImageObject\">";
-    $figureclose = "</figure>";
-    $linkclose = "</a>";
-    $content = "";
-    for($i = 1; $i < $count; $i++) {
-        $src = "./images/portfolio/" + $path + "/" + $i + ".jpg";
-        $srcprev = "./images/portfolio/" + $path + "_preview/" + $i + ".jpg";
-        $class = $path + $i;
-        $link = "<a class=\"" + $class + "\" href=\"" + $src + "\" itemprop=\"contentUrl\">";
-        $content = $figure + $link + $linkclose + $figureclose;
-        $('.thumbs-all').append($content);
-        $('.thumbs-' + $name).append($content);
-
-        $img = document.createElement('img');   
-        $img.src = $srcprev;
-        $img.setAttribute('alt', $alt);
-        $img.setAttribute('data-for', $class);
-        $img.onload = function() {
-            $h = 0; $w = 0;
-            $class = this.getAttribute('data-for');
-            if (this.naturalWidth) {
-                $w = this.naturalWidth * 20;
-                $h = this.naturalHeight * 20;
-                $('.' + $class).attr('data-size', $w + 'x' + $h);
-            } else {
-                $('.' + $class).attr('data-size', '600x800');
-            }
-            $('.' + $class).append(this);
-        }
     }
 }

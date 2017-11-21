@@ -281,25 +281,29 @@ body {
 }
 
 @media screen and (max-width: 1700px) {
-    
+
     .services .container {
         width: 90% !important;
     }
-    
+
 }
 
 @media screen and (max-width: 1500px) {
-    
+
     .services .container {
         width: 95% !important;
     }
-    
+
 }
-    
+
+.services .slick-cloned {
+	max-height: 300px;
+}
+
 
 
 .sliders .slide {
-    display: inline-block;
+		display: inline-block !important;
     margin: 30px;
 }
 
@@ -322,6 +326,10 @@ body {
 .sliders .description {
     margin: 20px auto 0 auto;
     font-size: 14px;
+		-webkit-transition: all 0.5s linear;
+     -moz-transition: all 0.5s linear;
+     -o-transition: all 0.5s linear;
+     transition: all 0.5s linear;
 }
 
 .sliders a {
@@ -332,18 +340,12 @@ body {
     font-size: 16px;
 }
 
-.slick-slide .description {
-    max-height: 400px;
-}
-
 .photos {
     margin: 10px auto;
 }
 
 .btn-more {
-    -webkit-box-shadow: -1px -5px 12px -6px rgba(0,0,0,0.75);
-    -moz-box-shadow: -1px -5px 12px -6px rgba(0,0,0,0.75);
-    box-shadow: -1px -5px 12px -6px rgba(0,0,0,0.75);
+		border-top: 2px solid #5c848e;
     display: none;
 }
 
@@ -461,23 +463,23 @@ body {
     color: #9e9e9e;
 }
 
-.galery-menu {
+.ver-menu {
     width: 50%;
     min-width: 250px;
     margin: 15px auto;
 }
 
-.galery-menu li {
+.ver-menu li {
     width: 100%;
     margin: 15px;
 }
 
 @media screen and (max-width: 1400px) {
-    
+
     .galery-menu li {
         margin: 5px;
     }
-    
+
 }
 
 .thumbs {
@@ -526,19 +528,19 @@ body {
 }
 
 @media screen and (max-width: 1500px) {
-    
+
     .contact-us .container-fluid  {
         padding: 0px 50px;
     }
-    
+
 }
 
 @media screen and (max-width: 1200px) {
-    
+
     .contact-us .container-fluid  {
         padding: 0px 20px;
     }
-    
+
 }
 
 .contact-form {
@@ -571,7 +573,7 @@ body {
 }
 
 .contact-form .form-group {
-    margin-bottom: 30px;    
+    margin-bottom: 30px;
 }
 
 .contact-form input[type=text],
@@ -659,4 +661,74 @@ footer .container-fluid {
     display: inline-block;
     margin-right: 10px;
     color: #eee;
+}
+
+/* ======= RECONSTRUCTION ============ */
+
+.no-scroll {
+	overflow: hidden;
+}
+
+#re-overlay {
+	position: fixed; /* Sit on top of the page content */
+  display: none; /* Hidden by default */
+  width: 100%; /* Full width (cover the whole page) */
+  height: 100%; /* Full height (cover the whole page) */
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+	background: #232527;
+	opacity: 0.98;
+  z-index: 100; /* Specify a stack order in case you're using a different order for other elements */
+	overflow-y: scroll;
+	padding: 50px;
+	color: #e8e8e8;
+}
+
+#re-overlay h2 {
+	color: #e8e8e8;
+	margin: 50px auto;
+	text-align: center;
+}
+
+#re-overlay .block-header {
+	color: #e8e8e8;
+}
+
+#re-overlay .main {
+	padding-top: 60px;
+}
+
+#re-overlay .ver-menu {
+	width: 90%;
+}
+
+#re-overlay .close {
+	font-size: 18px;
+	text-decoration: none;
+	color: #e8e8e8;
+	font-weight: bold;
+}
+
+#re-overlay .close: hover {
+	text-decoration: underline;
+}
+
+.re-thumbs {
+	text-align: center;
+	font-size: 18px;
+}
+
+.re-thumbs > div {
+	display: none;
+}
+
+.re-active {
+	display: block !important;
+}
+
+.re-thumbs img {
+	height: 100px;
+	margin: 10px;
 }
